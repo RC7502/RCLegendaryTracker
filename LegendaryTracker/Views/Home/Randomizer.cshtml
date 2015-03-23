@@ -1,0 +1,24 @@
+﻿@using System.Web.Mvc.Html
+@model LegendaryTracker.Models.RandomizerOptionsModel
+
+<h2>Randomizer</h2>
+<form id="randomOptionsForm">
+    <div>
+        <ul>
+            @for (var i = 0; i < Model.Sets.Count; i++)
+            {
+                <li>
+                    @Html.HiddenFor(x=>x.Sets[i].Id)
+                    @Html.CheckBoxFor(x=>x.Sets[i].Selected)
+                    @Html.Label(Model.Sets[i].Name)
+                </li>
+            }
+        </ul>
+    </div>
+    <div>
+        @Html.Label("Number of Players:")
+        @Html.DropDownListFor(m=>m.SelectedNumPlayers,Model.NumOfPlayers)
+    </div>
+    <button id="getRandom" type="button">Get Random Options!</button>
+</form>
+<div id="resultDiv"></div>
